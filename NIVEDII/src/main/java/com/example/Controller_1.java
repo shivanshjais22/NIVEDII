@@ -89,7 +89,7 @@ public class Controller_1 {
 	
 	
 	@GetMapping("/l")
-	public String name() {
+	public String name(Model m) {
 		return "user/index";
 	}
 	

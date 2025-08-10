@@ -1,72 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+<section class="vh-100" style="background-color: #f8f9fa;">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
 
- <section>
-      <div class="container">
-      <div class="card text-center">
-      <div class="text-center">
-   <!--     <img  style="height: 200px; width: 200px;"  class="contact_photo"   th:src="@{'/img/'+${user.imageurl}}"  alt="profile_photo"  >
-       -->
-      </div>
-      <h1 class="text-center  mt-3"  th:text="${user.name}" > </h1>
-      <div class="card-body">
-      
-      
- 
-        
-   <table class="table">
-  <thead>
-   <tr>
-      <th>#ID</th>
-      <th>SCMUSER <samp th:text="${user.id}"></samp></th>
-      
-    
-    </tr>
-  </thead>
-  <tbody>
-   
-    <tr>
-      <th scope="row">Email</th>
-     <td><samp th:text="${user.email}"></samp></td>
-      
-    
-    </tr>
-    
- <!--    <tr>
-      <th scope="row">Role</th>
-     <td><samp th:text="${user.role}"></samp></td>
-      
-    
-    </tr> -->
-    
- <!--    <tr>
-      <th scope="row">Status</th>
-     <td><samp th:text="${user.enabled}"></samp></td>
-      
-    
-    </tr> -->
-    
+                <div class="card shadow-sm p-4 text-center">
+                    <h3 class="mb-4">Welcome, John Doe!</h3>
 
-<!--  <tr>
-      <th scope="row">About</th>
-     <td><samp th:text="${user.about}"></samp></td>
-      
-    
-    </tr> -->
-  </tbody>
-</table> 
-      
-         </div>      
-      </div>
-   </div>
+                    <p><strong>Email:</strong> john@example.com</p>
+                    <p><strong>Phone:</strong> +91 9876543210</p>
+
+                    <div class="mt-4">
+                     <a class="btn btn-primary btn-lg mr-2" th:href="@{/map}">📍 GPS Tracking</a>
+                        <button class="btn btn-danger btn-lg">🔔 Buzzer</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </section>
-       
-
-
 </body>
 </html>
