@@ -68,11 +68,12 @@ public class Controller_1 {
 	
 	@PostMapping("/log_info")
 	public String login_info(@RequestParam("email") String email,
-            @RequestParam("password") String password,Model m) {
+            @RequestParam("password") String password,Model m, HttpSession h) {
 		 User u = r.findByEmail(email);
 
 		    if (u == null) {
 		        System.out.println("❌ No user found for: " + email);
+		        h.setAttribute("message1", "	EMAIL OR PASSWORD IS  WRONG CHECK IT.....!" );
 		        return "login";
 		    }
 
@@ -97,6 +98,12 @@ public class Controller_1 {
 		return "user/map";
 	}
 	
+	
+	
+	@GetMapping("/a")
+	String about1() {
+		return "about";
+	}
 	
 
 }
