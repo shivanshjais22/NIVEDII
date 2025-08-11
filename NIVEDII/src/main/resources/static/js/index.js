@@ -62,3 +62,37 @@ const serch = ()=>{
 }
 
 
+//
+
+
+
+function startTracking() {
+	let map, marker;
+  if (!map) {
+    map = L.map('map').setView([20.5937, 78.9629], 5);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+    }).addTo(map);
+    marker = L.marker([20.5937, 78.9629]).addTo(map);
+  }
+
+  const ws = new WebSocket("ws://localhost:8080/gps");
+
+  ws.onopen = () => console.log("WebSocket connected");
+
+  ws.onmessage = (event) => {
+    try {
+      const { lat, lon } = JSON.parse(event.data);
+      console.log("Received GPS:", lat, lon);
+      marker.setLatLng([lat, lon]);
+      map.setView([lat, lon], 13);
+    } catch (e) {
+      console.error("Invalid message", e);
+    }
+  };
+
+  ws.onerror = (err) => console.error("WebSocket error", err);
+  ws.onclose = () => console.log("WebSocket closed");
+}
+
+

@@ -17,10 +17,29 @@
                     <p><strong>Email:</strong> john@example.com</p>
                     <p><strong>Phone:</strong> +91 9876543210</p>
 
-                    <div class="mt-4">
-                     <a class="btn btn-primary btn-lg mr-2" th:href="@{/map}">📍 GPS Tracking</a>
-                        <button class="btn btn-danger btn-lg">🔔 Buzzer</button>
-                    </div>
+                   <button onclick="startTracking()">📍 GPS Tracking</button>
+<button onclick="activateBuzzer()">🔔 Activate Buzzer</button>
+
+<div id="map" style="height:400px;"></div>
+
+<script>
+function startTracking() {
+    const map = L.map('map').setView([0,0], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+    const marker = L.marker([0,0]).addTo(map);
+
+    const ws = new WebSocket("ws://localhost:8080/gps");
+    ws.onmessage = (event) => {
+        const { lat, lon } = JSON.parse(event.data);
+        marker.setLatLng([lat, lon]);
+        map.setView([lat, lon], 13);
+    };
+}
+
+function activateBuzzer() {
+    fetch("/buzzer/on", { method: "POST" });
+}
+</script>
                 </div>
 
             </div>
